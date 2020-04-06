@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+<!--
+    Diseases
+    -->
+<record id="disease_corona" model="disease.disease">
+            <field name="name">Corona virus</field>
+            <field name="technical_name">COVID-19</field>
+            <field name="contagious">1</field>
+            <field name="pandemic">1</field>
+        </record>
+ <record id="disease_ebola" model="disease.disease">
+            <field name="name">Ebola virus</field>
+            <field name="technical_name">EVD</field>
+            <field name="contagious">1</field>
+            <field name="pandemic">1</field>
+        </record>
+<!--
+    Symptoms
+    -->    
+<record id="Breathing_difficulties" model="disease.symptom">
+            <field name="name">Breathing difficulties</field>
+        </record>
+        <record id="Fever" model="disease.symptom">
+            <field name="name">Fever</field>
+        </record>
+        <record id="Vomiting" model="disease.symptom">
+            <field name="name">Vomiting</field>
+        </record>
+        <record id="Cough" model="disease.symptom">
+            <field name="name">Cough</field>
+        </record>
+        <record id="Lack_of_appetite" model="disease.symptom">
+            <field name="name">Lack of appetite</field>
+        </record>
+        <record id="General_Fatigue" model="disease.symptom">
+            <field name="name">General Fatigue
+</field>
+        </record>
+        <record id="Sore_Throat" model="disease.symptom">
+            <field name="name">Sore Throat</field>
+        </record>
+        <record id="Muscular_pain" model="disease.symptom">
+            <field name="name">Muscular pain</field>
+        </record>
+        <record id="Anosmia" model="disease.symptom">
+            <field name="name">Anosmia (loss of smell)</field>
+        </record>
+
+<!--
+    Treatments
+    -->
+<record id="corona_treatments" model="disease.treatment">
+            <field name="name">Corona Treatments</field>
+            <field name="description">No current vaccine or treatment
+Health care are utilising a systemoc apprach Treating symptoms rather than virus
+</field>
+        </record>
+ <record id="ebola_treatments" model="disease.treatment">
+            <field name="name">Ebola Treatments</field>
+            <field name="description">rVSV-ZEBOV vaccine
+</field>
+        </record>
+<!--***********************************************-->
+<!--
+    Rules of detection
+    -->
+<record id="corona_detection_rule" model="rule.detection">
+            
+            <field name="symptoms" eval="[(6,0,[ref('bloopark_test.Breathing_difficulties'), ref('bloopark_test.General_Fatigue'), ref('bloopark_test.Sore_Throat'), ref('bloopark_test.Muscular_pain'), ref('bloopark_test.Anosmia'), ref('bloopark_test.Fever')])]"/>
+            <field name="disease_id" ref="disease_corona"/>
+        </record>
+  <record id="ebola_detection_rule" model="rule.detection">
+            
+            <field name="symptoms" eval="[(6,0,[ref('bloopark_test.Sore_Throat'), ref('bloopark_test.Cough'), ref('bloopark_test.Vomiting'), ref('bloopark_test.Fever'), ref('bloopark_test.Lack_of_appetite')])]"/>
+            <field name="disease_id" ref="disease_ebola"/>
+        </record>
+    <!--
+    Rules of Treatments
+    -->
+    <record id="corona_treatment_rule" model="rule.treatment">
+            
+            <field name="treatments" eval="[(6,0,[ref('bloopark_test.corona_treatments')])]"/>
+            <field name="disease_id" ref="disease_corona"/>
+        </record>
+  <record id="ebola_treatment_rule" model="rule.treatment">
+            
+            <field name="treatments" eval="[(6,0,[ref('bloopark_test.ebola_treatments')])]"/>
+            <field name="disease_id" ref="disease_ebola"/>
+        </record>
+    <!--*******************************-->
+    <!--
+    Patient
+    -->
+<record id="yahla_reda_patient" model="patient.patient">
+            <field name="name">YAHLA REDA</field>
+            <field name="gender">male</field>
+            <field name="birthDate">1992-12-27</field>
+            <field name="passport">6633789434</field>
+            <field name="image" type="base64" file="bloopark_test/static/0.jpg"/>
+
+            <field name="symptoms_ids" eval="[(6,0,[ref('bloopark_test.Breathing_difficulties'), ref('bloopark_test.General_Fatigue'), ref('bloopark_test.Sore_Throat'), ref('bloopark_test.Muscular_pain'),  ref('bloopark_test.Fever')])]"/>
+        </record>
+  <record id="benjamin_curis_patient" model="patient.patient">
+            <field name="name">BENJAMIN CURTIS</field>
+            <field name="gender">male</field>
+            <field name="birthDate">1992-01-13</field>
+            <field name="image" type="base64" file="bloopark_test/static/hr.jpg"/>
+
+            <field name="symptoms_ids" eval="[(6,0,[ref('bloopark_test.Sore_Throat'), ref('bloopark_test.Cough'), ref('bloopark_test.Vomiting'), ref('bloopark_test.Fever')])]"/>
+        </record>
+
+    </data>
+</openerp>

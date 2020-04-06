@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		
+		<!--*************Disease_views****************-->
+		<record id="disease_form" model="ir.ui.view">
+			<field name="name">disease.disease.form</field>
+			<field name="model">disease.disease</field>
+			<field name="arch" type="xml">
+			<form string="Disease">
+				<group >
+					<field name="name"/>
+					<field name="technical_name"/>
+					<field name="contagious"/>
+					<field name="pandemic"/>
+				</group>
+			</form>
+		</field>
+		</record>
+		<record id="disease_tree" model="ir.ui.view">
+			<field name="name">disease.disease.tree</field>
+			<field name="model">disease.disease</field>
+			<field name="arch" type="xml">
+				<tree string="Disease List">
+					
+					<field name="name"/>
+					<field name="contagious"/>
+					<field name="pandemic"/>
+				</tree>
+			</field>
+		</record>
+		<!--*************Disease_Treatment_views****************-->
+		<record id="disease_treatment_form" model="ir.ui.view">
+			<field name="name">disease.treatment.form</field>
+			<field name="model">disease.treatment</field>
+			<field name="arch" type="xml">
+			<form string="Treatments">
+				<group >
+					<field name="name"/>
+					<field name="description"/>
+				</group>
+			</form>
+		</field>
+		</record>
+
+		<record id="disease_treatment_tree" model="ir.ui.view">
+			<field name="name">disease.treatment.tree</field>
+			<field name="model">disease.treatment</field>
+			<field name="arch" type="xml">
+				<tree string="Treatments List">
+					<field name="name"/>
+					<field name="description"/>
+				</tree>
+			</field>
+		</record>
+		<!--*************Disease_symptoms_views****************-->
+		<record id="disease_symptom_form" model="ir.ui.view">
+			<field name="name">disease.symptom.form</field>
+			<field name="model">disease.symptom</field>
+			<field name="arch" type="xml">
+			<form string="Symptoms">
+				<group >
+			
+					<field name="name"/>
+					<field name="characteristics"/>
+				</group>
+			</form>
+		</field>
+		</record>
+
+		<record id="disease_symptom_tree" model="ir.ui.view">
+			<field name="name">disease.symptom.tree</field>
+			<field name="model">disease.symptom</field>
+			<field name="arch" type="xml">
+				<tree string="Symptoms List">
+					<field name="name"/>
+					<field name="characteristics"/>
+				</tree>
+			</field>
+		</record>
+		<!--***********************Actions***************************-->
+		<!--Disease action -->
+		<record id="action_disease" model="ir.actions.act_window">
+			<field name="name">Diseases List</field>
+			<field name="res_model">disease.disease</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context" >{}</field>
+			
+
+		</record>
+		<!--Treatments action -->
+		<record id="action_disease_treatment" model="ir.actions.act_window">
+			<field name="name">Treatments List</field>
+			<field name="res_model">disease.treatment</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context" >{}</field>
+			
+
+		</record>
+		<!--Symptoms action -->
+		<record id="action_disease_symptom" model="ir.actions.act_window">
+			<field name="name">Symptoms List</field>
+			<field name="res_model">disease.symptom</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context" >{}</field>
+			
+
+		</record>
+		<!--***********************Menus***************************-->
+		<menuitem name="Disease" id="menu_disease" parent="bloopark_test.menu_bloopark_test" sequence="2" />
+		<menuitem name="Diseases List" action="action_disease" id="menu_disease_1" parent="menu_disease" sequence="1"/>
+		<menuitem name="Symptoms" action="action_disease_symptom" id="menu_disease_symptom" parent="menu_disease" sequence="2"/>
+		<menuitem name="Treatments" action="action_disease_treatment" id="menu_disease_treatment" parent="menu_disease" sequence="3"/>
+	</data>
+</openerp>

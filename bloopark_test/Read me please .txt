@@ -1,0 +1,38 @@
+Hi My name's YAHLA MOHAMMED REDA,
+The developer of this application .
+
+This application is an idea came up to my head while we're in these 
+lock down moments of corona virus.
+
+So basically what you can do with it is : 
+
+1) create a patient [patient state = "Healthy" ]
+2) Initialize the patient's symptoms.
+3) run diagnosis.
+4) confirm diagnosis/ diseases
+5) Compute treatment
+6) Check patient Medical history [history of actions 
+	made on disease list(add/delete)
+
+Extra cases : 
+7)You can add/ delete immediatly the disease from the patient disease list
+8)Patient states is : 
+	['Healthy' -> by default]
+	['Sick' -> if diseases list not empty]
+	['Recovered' -> if diseases list is empty]
+	['Possible sick' -> if the Patient's symptoms match more than
+	50% of a disease's symptoms]
+
+When you install the module, you will have 2 patients initialized with their
+symptoms as example.
+i suggest you to confirm diseases, compute the symptoms, then try playing with
+the disease list like you are doctors :), at the same time watch the patient state
+and the medical history of the patient.
+
+
+I wish you enjoyed the test, and please even if i wont get selected let me know what 
+errors did i make, so i can improve my self.
+
+Advanced thanks.
+
+Best Regards.

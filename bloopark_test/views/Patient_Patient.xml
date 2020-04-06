@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!--*************patients_views****************-->
+		<record id="patient_patient_form" model="ir.ui.view">
+			<field name="name">patient.patient.form</field>
+			<field name="model">patient.patient</field>
+			<field name="arch" type="xml">
+				<form string="Patient">
+					<header>
+						<button attrs="{'invisible':[('patient_state','=','sick')]}" class="oe_highlight" name="confirm_diseases" string="Confirm disease" type="object"/>
+						<field clickable="True" name="patient_state" statusbar_visible="possible,sick" widget="statusbar"/>
+					</header>
+					<sheet>
+						<group col="3" string="Personnal informations">
+							<group>
+								<field default_focus="1" name="name" placeholder="Name"/>
+								<field name="birthDate"/>
+								<field name="age"/>
+							</group>
+							<group>
+								<field name="gender"/>
+								<field name="passport"/>
+							</group>
+							<field class="oe_right oe_avatar" name="image" nolabel="1" options="{ &quot;size&quot;: [250, 130]}" style="margin-top:-50px;" widget="image"/>
+						</group>
+						<notebook style="margin-top:-10px;">
+							<page string="Current Medical infos">
+								<group col="3" style="margin-top:-20px;">
+									<group string="Initial symptoms" width="40%">
+										<field name="symptoms_ids" nolabel="1"/>
+									</group>
+									<group width="20%">
+										<div style="text-align:center;margin-top:50px;">
+											<div style="margin-top:7px">
+												<button class="oe" name="compute_possible_diseases" string="Run diagnosis" style="width:127px;" type="object"/>
+												<div class="oe_horizontal_separator oe_clear" style="margin-top:-5px">---&gt;</div>
+											</div>
+											<div style="margin-top:5px">
+												<button class="oe" name="confirm_diagnosis" string="confirm diagnosis" type="object"/>
+											</div>
+											<div class="oe_horizontal_separator oe_clear" style="margin-top:-3px">||</div>
+											<div class="oe_horizontal_separator oe_clear" style="margin-top:-15px">\/</div>
+										</div>
+									</group>
+									<group string="Possibility diseases" width="40%">
+										<field   name="prediction_disease_console" nolabel="1"/>
+									</group>
+								</group>
+								<group col="3" style="margin-top:-10px;">
+									<group string="Current Diseases" width="40%">
+									<field name="disease_ids" nolabel="1"/>
+								</group>
+									<group width="20%">
+										<div style="text-align:center;margin-top:50px;">
+											<div style="margin-top:7px">
+												<button  name="compute_treatments" string="Compute treatments"  class="oe_highlight"  type="object"/>
+												<div class="oe_horizontal_separator oe_clear" style="margin-top:-5px;">---&gt;</div>
+											</div>
+										 
+										 
+										</div>
+									</group>
+									<group string="Suggested treatments" width="40%">
+										<field  name="treatment_ids" nolabel="1"/>
+									</group>
+								</group>
+								
+							</page>
+							<page string="Medical History">
+								<group>
+									<field name="medical_history_ids" nolabel="1">
+										<tree string="Medical History">
+											<field name="create_uid" string="validated by"/>
+											<field name="action"/>
+											<field name="disease_id"/>
+											<field name="create_date" string="Date"/>
+										</tree>
+									</field>
+								</group>
+								<group>
+									<button class="oe_right" name="clear_patient_medical_history" string="Clear all history" type="object"/>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<record id="patient_tree" model="ir.ui.view">
+			<field name="name">patient.patient.tree</field>
+			<field name="model">patient.patient</field>
+			<field name="arch" type="xml">
+				<tree string="patients">
+					<field name="name"/>
+					<field name="write_date" string="Last visit"/>
+					<field name="patient_state"/>
+				</tree>
+			</field>
+		</record>
+		<!--***********************Actions***************************-->
+		<!-- patient action-->
+		<record id="action_patient" model="ir.actions.act_window">
+			<field name="name">patients List</field>
+			<field name="res_model">patient.patient</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{}</field>
+		</record>
+		<!--***********************Menus***************************-->
+		<menuitem id="menu_patient" name="Patient" parent="bloopark_test.menu_bloopark_test" sequence="1"/>
+		<menuitem action="action_patient" id="menu_patient_1" name="Patients" parent="menu_patient" sequence="1"/>
+	</data>
+</openerp>
